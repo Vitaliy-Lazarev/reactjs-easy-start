@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { Header } from './components/index';
+import { DevTools } from './utils/index';
 
-
-class App extends React.Component {
-
+export default class App extends React.Component {
+    
+    static propTypes = {
+        children: PropTypes.any.isRequired  
+    };
     static path = '/';
-
+    
     render() {
-        return(
-            <h1>Hello World</h1>
+        return (
+            <div>
+                <Header />
+                { this.props.children }
+                { process.env.NODE_ENV !== 'production' ? <DevTools /> : null }
+            </div>
         );
     }
-
+    
 }
-
-export default App;
